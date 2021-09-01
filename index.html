@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./双指针.js"></script>
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      .p0 {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .p1 {
+        width: 800px;
+        height: 800px;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        background-color: #000;
+      }
+      .p2 {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        background-color: aqua;
+      }
+      .p3 {
+        width: 400px;
+        padding-top: 75%;
+        background-color: #fff;
+      }
+      .m0 {
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+        margin: 10px;
+      }
+      .m1 {
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+        margin: 20px;
+      }
+
+      .blue,
+      .red-inner {
+        height: 50px;
+        margin: 10px 0;
+      }
+
+      .blue {
+        background: blue;
+      }
+
+      .red-outer {
+        overflow: hidden;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="p0">
+      <div class="p1">
+        <div class="p2">
+          <div class="p3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="m0"></div>
+    <div class="wrap">
+      <div class="m1"></div>
+    </div>
+
+    <div class="blue"></div>
+    <div class="red-outer">
+      <div class="red-inner" onclick="sumMap(nums, target)">red inner</div>
+    </div>
+
+    <script type="text/javascript">
+      document
+        .getElementById("input")
+        .addEventListener("input", throttle(myColose, 1000));
+
+      window.addEventListener("resize", throttleNoTimer(myColose, 1000));
+
+      function myColose() {
+        console.log("111111");
+      }
+      window.addEventListener("storage", function (e) {
+        alert(e.newValue);
+      });
+    </script>
+  </body>
+</html>
