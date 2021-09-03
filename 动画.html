@@ -7,22 +7,30 @@
   <title>Document</title>
   <style>
     .test{
+      position: relative;
+    }
+    .test::after{
+      position: absolute;
+      left: 0;
+      content: "";
       width: 100px;
-      height: 2px;
+      height: 1px;
       background-color: aqua;
-      animation: widthkey 2s;
+      box-shadow: 0 0 1px aqua;
+      animation: widthkey .3s;
     }
     @keyframes widthkey {
       from {
-        width: 0;
+        transform: scale3d(.1, .1, .1);
       }
       to {
-        width: 100px;
+        transform: scale3d(1, 1, 1);
       }
     }
   </style>
 </head>
 <body>
+  <div class="test"></div>
   <div class="test"></div>
 </body>
 </html>
