@@ -2,8 +2,8 @@
  * 
  * @param {*} arr 
  * @returns 
- * 最好情况O(n)
- * 最坏情况O(nLogn)
+ * 最好情况O(nLogn)
+ * 最坏情况O(n^2)
  */
 
 function quickSort(arr) {
