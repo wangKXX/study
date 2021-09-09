@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <meta name="referrer" content="never">
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+    var url = "alert('1')"           // 返回URL中的查询部分（？之后的内容）
+    document.write('<img src="' + url + '" onerror="'+ url +'">"'); 
+  </script>
+</body>
+</html>
