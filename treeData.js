@@ -15,15 +15,15 @@ const treeData = [
             id: 3,
             key: 1,
             value: 1,
-            label: 1
+            label: 1,
           },
           {
             id: 4,
             key: 1,
             value: 1,
-            label: 1
-          }
-        ]
+            label: 1,
+          },
+        ],
       },
       {
         id: 5,
@@ -35,29 +35,29 @@ const treeData = [
             id: 6,
             key: 1,
             value: 1,
-            label: 1
+            label: 1,
           },
           {
             id: 7,
             key: 1,
             value: 1,
-            label: 1
-          }
-        ]
-      }
-    ]
-  }
+            label: 1,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
-const parent = treeData.map(({ key, value, label }) => ({ key, value, label }))
+const parent = treeData.map(({ key, value, label }) => ({ key, value, label }));
 
 function getChildren(treeData, pId) {
-  let res = []
-  treeData.forEach(({ id, children}) => {
+  let res = [];
+  treeData.forEach(({ id, children }) => {
     if (id === pId) res = children;
     if (id !== pId && children?.length) res = getChildren(children, pId);
-  })
+  });
   return res;
 }
 
-console.log(getChildren(treeData, 5))
+console.log(getChildren(treeData, 5));
