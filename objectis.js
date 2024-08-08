@@ -62,4 +62,4 @@ console.log([1, 2, 3] == true);
 
 console.log('1' == true);
 
-// 对象转换为基本类型 有限调用 Symbol.toPrimitive -> valueOf -> toString
+// 对象转换为基本类型 优先调用 Symbol.toPrimitive -> valueOf -> toString
