@@ -14,7 +14,7 @@ function manyFetchReturn(tasks, limit) {
   if (tasks.length === 0) {
     return Promise.resolve([]);
   }
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const results = [];
     // 当前正在运行的任务数量
     let runningTask = 0;
@@ -50,7 +50,7 @@ function manyFetchReturn(tasks, limit) {
 
 function fetchTest(i) {
   console.log(i, "start");
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(i);
     }, (i + 1) * 1000);
