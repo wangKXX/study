@@ -27,7 +27,7 @@ Person.prototype.getName = function () {
 };
 
 /**
- * @description 原型式继承， “父类的引用数据会共享”
+ * @description 原型式继承， “父类的引用数据会共享。赋值操作会给对象创建自有属性”
  * tips: 给对象设置属性时会创建自有属性
  */
 function Student() {}
