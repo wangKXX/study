@@ -5,6 +5,7 @@
 Function.prototype.myCall = function() {
   const context = [].shift.call(arguments) || window || global;
   const args = [].slice.call(arguments);
+  console.log(args, 'args')
   context.fn = this;
   return context.fn(...args);
 }

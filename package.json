@@ -1,0 +1,23 @@
+{
+  "name": "study",
+  "version": "1.0.0",
+  "description": "study always",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangKXX/study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangKXX/study/issues"
+  },
+  "homepage": "https://github.com/wangKXX/study#readme",
+  "dependencies": {
+    "assert": "^2.1.0",
+    "mocha": "^10.7.3"
+  }
+}
