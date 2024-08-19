@@ -3,6 +3,7 @@
 vite 是一个基于 esbuild 的开发服务器。提供了极为快速的冷启动. 在开发环境下，vite使用ESBuild + 浏览器原生的ESModule支持，无需额外的构建步骤，并且始终提供实时重载。
 
 ## vite为什么开发环境冷启动非常快
+
 vite 将我们的代码分为依赖和源码，依赖是指一些第三方模块，代码进本不会变动。源码是我们自己编写的代码。
 1. 基于浏览器默认支持的ESModule, 无需在启动时进行整个项目的编译构建
 2. 按需编译. vite在浏览器获取当前需要文件是对，获取的文件进行编译（包括bable, scss， less, image， vue， react源文件转换）
@@ -23,3 +24,28 @@ vite启动之后会在_createServer方法中启动devserver, hmrwebsocket服务�
 5. 通过onHMRUpdate方法最终会调用hmt.ts下的updateModules（其中会对当前module的依赖项是否需要更新进行判断）
 6. 通过webbsocket发送更新内容（updates）到客户端
 7. 客户端在收到update消息之后会根据update内的path查找所有的link标签,找到之后将该标签调用cloneNode方法重新创建一个link标签，将标签插入到目标标签之后，然后在新的标签加载之后删除旧的标签
+
+## 生产环境构建
+
+vite在生产环境仍然是需要构建的（处理非js文件的转换）, 默认情况下构建的目标版本最低是到es6, 且构建的结果中是不包含polyfill的，构建结果仍然是ESM。
+如果需要兼容低版本浏览器，需要使用 @vitejs/plugin-legacy 插件来支持，该插件内部使用babel对源码进行了转换。
+
+```typescript
+import legacy from '@vitejs/plugin-legacy'
+
+export default {
+  plugins: [
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
+  ],
+}
+```
+
+其中targets为目标浏览器版本
+
+@vitejs/plugin-legacy会在html文件中插入
+```html
+<script nomodule> 
+```
+经过babel转换之后的降级代码，但在支持esm的浏览器中，该脚本会被忽略。
