@@ -19,7 +19,15 @@ webpack-cli 下的package.json文件内配置的bin：./bin/cli.js，在webpack-
 5. 之后通过compiler实例注册HotModuleReplacementPlugin插件对页面注入相关Hmr代码（主要是manifest对象相关），同时开启文件监听
 6. 当compiler的done钩子触发之后，会调用server的send方法，触发message为ok type的回调。
 7. 之后调用注入客户端的reloadApp防范，通过触发hmr的hotEmitter。emit('webpackHotUpdate', currentHash)触发hmr监听的webpackHotUpdate的回调
-8. 回调函数中触发module.hot.check(HotModuleReplacement.runtime.js)方法，拉取新模块信息
+8. 回调函数中触发module.hot.check(HotModuleReplacement.runtime.js)方法，拉取新模块信息(XXX.hot-update.json)
 9. 检查需要更新后会触发module.hot.apply方法最终会执行internalApply方法
 10. 最终会走到JsonpChunkLoadingRuntimeModule中通过JSOP的方式获取最新的chunk文件，每次下发新的chunk文件都会生成一个对应的applyHandler，只要包含两个方法一个dispose方法，一个apply方法,dispose方法主要是删除旧的模块，apply方法会执行下发的chunk内容（IIFE函数）同时，触发module.hot.accepte时HMR会重新require在accept的模块依赖和执行回调函数
-以上流程只是webpack本身实现的hmr流程，对于vue，react自己实现了hmr的逻辑
+以上流程只是webpack本身实现的hmr流程，对于vue，react自己实现了hmr的逻辑.
+
+## webpack如何实现文件变更监听
+
+webpack通过使用 watchpack库来进行文件系统监听，watchpack是对node的fs.watch进行了平台差异屏蔽的库。
+
+
+## webpack是如何更新页面的
+在收到webpack的ok消息之后会触发hot的event webpackHotUpdate,之后会触发hmr注入的webpackHotUpdate的回调，回调中会调用module.hot.check方法，会拉取xxx.hot-update.json文件，这个文件里面会包含需要更新以及需要卸载的chunks文件，拿到hot-update.json文件之后会触发apply方法对需要更新的chunks文件进行下载执行（jsonp），执行完成之后会触发hot.accept方法，触发组件更新，调用hot.dispose方法根据hot-update.json中返回的需要删除的模块列表来删除旧的模块释放内存。
