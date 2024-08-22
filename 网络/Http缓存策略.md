@@ -1,19 +1,23 @@
 # http缓存策略
+
 ## 强缓存
-- 浏览器在第一次发起请求的时候，会返回200状态码和内容，浏览器会缓存响应类容和响应头
-- 再次发起请求时会先检查缓存状态（比较当前时间和cache-control中设置的max-age）,如果没有超过有效期则直接返回缓存内容（http1.1）
-- 如果不支持http1.1的话则会查看expires 头是否过期，如果没过期则命中强缓存
+
+* 浏览器在第一次发起请求的时候，会返回200状态码和内容，浏览器会缓存响应类容和响应头
+* 再次发起请求时会先检查缓存状态（比较当前时间和cache-control中设置的max-age）, 如果没有超过有效期则直接返回缓存内容（http1.1）
+* 如果不支持http1.1的话则会查看expires 头是否过期，如果没过期则命中强缓存
 
 ```
 强缓存依赖于响应头中的expires和cache-control设置，在没有命中强缓存的情况下，才会触发协商缓存
 ```
+
 ## 协商缓存
-- 如果内容过期则表示强缓存没有命中之后开始协商缓存
-- 浏览器向服务器发送携带请求头If-Modified-Since和If-None-Match
-- 服务器在收到请求之后先判断If-None-Match的值和etag是否一致，如果一致则返回304状态码，表示资源没有修改，浏览器直接使用缓存内容
-- 如果不一致则返回200状态码和新的etag
-- 如果没有etag则会获取请求头If-Modified-Since和资源的最后一次修改时间做对比，如果没有失效则返回304状态码，表示资源没有修改，浏览器直接使用缓存内容
-- 如果失效则返回200状态码，新的内容和资源最后一次修改的时间last-modified
+
+* 如果内容过期则表示强缓存没有命中之后开始协商缓存
+* 浏览器向服务器发送携带请求头If-Modified-Since和If-None-Match
+* 服务器在收到请求之后先判断If-None-Match的值和etag是否一致，如果一致则返回304状态码，表示资源没有修改，浏览器直接使用缓存内容
+* 如果不一致则返回200状态码和新的etag
+* 如果没有etag则会获取请求头If-Modified-Since和资源的最后一次修改时间做对比，如果没有失效则返回304状态码，表示资源没有修改，浏览器直接使用缓存内容
+* 如果失效则返回200状态码，新的内容和资源最后一次修改的时间last-modified
 
 ## 启发式缓存
 
@@ -25,12 +29,12 @@
 
 ## 如何设置强缓存
 
-- http1.0设置expires响应头
-- http1.1设置cache-control响应头（当值为max-age， s-maxage仅用于共享缓存优先级高于max-age，max-stale表示愿意接受过期资源但不能超过设置的时间）
+* http1.0设置expires响应头
+* http1.1设置cache-control响应头（当值为max-age， s-maxage仅用于共享缓存优先级高于max-age，max-stale表示愿意接受过期资源但不能超过设置的时间）
 
 ## 如何设置协商缓存
 
-- http请求头种设置cache-control ( no-cache, max-age=0,must-revalidate)
+* http请求头种设置cache-control ( no-cache, max-age=0, must-revalidate)
 
 ## expres和cache-control的优先级
 
@@ -42,9 +46,14 @@ etag优先级高于last-modified
 
 ## etag是如何被计算出来的
 
-
+etag的生成策略取决于服务端的实现一下是几种常见的生成方式
+* 根据文件内容生成的hash值（如MD5或者SHA-1），文件内容发生变化则生成新的hash值
+* 基于资源元数据，如根据last-modified和文件大小content-length生成hash值(nginx)
+* 自定义算法
+* 弱etag，弱etag通常是指资源你的逻辑版本，而不是内容的变化，弱etag通常会在响应头带有W/前缀
 
 ## 浏览器中看到的from memory cache和from disk cache有什么区别
+
 1. Memory Cache (from memory cache)
 存储位置: 内存缓存存储在计算机的 RAM 中。
 访问速度: 由于内存的访问速度远高于硬盘，因此内存缓存的读取速度非常快。

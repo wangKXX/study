@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset=utf-8>
-  <meta name="referrer" content="never">
-  <title></title>
+    <meta charset="UTF-8">
+    <title>Search Page</title>
 </head>
 <body>
-  <script type="text/javascript">
-    var url = "alert('1')"           // 返回URL中的查询部分（？之后的内容）
-    document.write('<img src="' + url + '" onerror="'+ url +'">"'); 
-  </script>
+    <h1>Search Page</h1>
+    <form action="/search" method="get">
+        <input type="text" name="q" placeholder="Enter search term">
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="results">
+        <h2>Results:</h2>
+        <p>
+            <!-- 显示搜索结果 -->
+            <span id="searchTerm"></span>
+        </p>
+    </div>
+
+    <script>
+        // 获取 URL 参数
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // 显示搜索结果
+        var searchTerm = getParameterByName('q');
+        document.getElementById('searchTerm').textContent = searchTerm;
+    </script>
 </body>
 </html>
