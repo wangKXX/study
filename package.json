@@ -20,6 +20,13 @@
   "homepage": "https://github.com/wangKXX/study#readme",
   "dependencies": {
     "assert": "^2.1.0",
+    "eslint": "^9.9.0",
     "mocha": "^10.7.3"
+  },
+  "devDependencies": {
+    "lint-staged": "^15.2.9"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx"
   }
 }
