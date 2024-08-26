@@ -1,4 +1,5 @@
-const assert = require("assert");
+// const assert = require("assert");
+import assert from "assert";
 
 const error = new TypeError("right must be an object");
 const errorInfo = {

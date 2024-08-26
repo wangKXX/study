@@ -6,7 +6,7 @@ tslint规范等等。统一的代码格式等，
 
 - 安装husky：npm install husky --save-dev
 
-- 启用git hooks：npx husky install 执行完场之后会在项目目录生成一个.husky文件夹
+- 启用git hooks：npx husky 执行完场之后会在项目目录生成一个.husky文件夹
   * _文件下会生成对应支持的githooks文件，如pre-commit、pre-push等，对应的是git hooks的钩子函数，可以在其中做对应的事情
   * commit-msg 文件是用来对commit message进行校验的
 
