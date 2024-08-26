@@ -20,14 +20,17 @@
   "homepage": "https://github.com/wangKXX/study#readme",
   "dependencies": {
     "assert": "^2.1.0",
-    "eslint": "^9.9.0",
     "mocha": "^10.7.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "eslint": "^9.9.1",
+    "globals": "^15.9.0",
+    "husky": "^8.0.0",
     "lint-staged": "^15.2.9",
-    "husky": "^8.0.0"
+    "typescript-eslint": "^8.2.0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx"
+    "**/*.{js,jsx,ts,tsx}": "eslint"
   }
 }
