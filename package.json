@@ -24,7 +24,8 @@
     "mocha": "^10.7.3"
   },
   "devDependencies": {
-    "lint-staged": "^15.2.9"
+    "lint-staged": "^15.2.9",
+    "husky": "^8.0.0"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx"
