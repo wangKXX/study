@@ -30,9 +30,11 @@
     "globals": "^15.9.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.9",
+    "prettier": "3.3.3",
     "typescript-eslint": "^8.2.0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": "eslint"
+    "**/*.{js,jsx,ts,tsx}": "eslint",
+    "**/*.{js,jsx,ts,tsx}": "prettier --write"
   }
 }

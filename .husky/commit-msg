@@ -1,19 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx --no-install commitlint --edit "$1"
-# echo "Commit message validation failed."
-# exit_code=$?
-
-# echo "$exit_code"
-# types=$(npx commitlint --print-config | jq -r '.rules.type.enum[]')
-# echo "$types"
-# # 如果校验失败，则输出类型列表
-# if [ exit_code=$? -ne 0 ]; then
-# # 获取 commitlint 的类型列表
-#   types=$(npx commitlint --print-config | jq -r '.rules.type.enum[]')
-#   echo "Commit message validation failed."
-#   echo "Please use one of the following types in your commit message:"
-#   echo "$types"
-#   exit 1
-# fi
+npx --no-install commitlint --config commitlint.config.js --edit "$1" 
