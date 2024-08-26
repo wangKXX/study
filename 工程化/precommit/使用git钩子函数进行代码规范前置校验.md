@@ -11,3 +11,16 @@ tslint规范等等。统一的代码格式等，
   * commit-msg 文件是用来对commit message进行校验的
 
 - 在package.json中添加prepare脚本： prepare: "husky install"
+- 之后就可以使用之前在.husky文件夹下添加的pre-commit钩子中执行命令，如：npm run test
+
+- 使用lint-staged: lint-staged的出现主要是为了解决在执行lint时只校验本次缓存区的文件，对于一些历史项目添加的eslint规则的代码，
+，在没有lint-staged的情况下，每次提交会对之前的代码进行校验，导致无法提交，所以需要lint-staged只对本次缓存区内的内容进行校验。
+```
+lint-staged: 接收一个对象作为配置，key表示一个通配符(包含的文件)，value表示一个命令，如：eslint， stylelint等
+```
+
+- 使用commitlint 进行代码提交信息校验
+  * 安装：npm install @commitlint/config-conventional @commitlint/cli --save-dev
+  * 添加配置文件：commitlint.config.js 配置参考根目录下的commitlint.config.js 文件
+  * 生成commit-msg文件：npx husky add .husky/commit-msg 'npx --no-install commitlint --edit ${1}'
+之后在下次提交的时候就会对commit message进行校验了
