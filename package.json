@@ -18,11 +18,10 @@
     "url": "https://github.com/wangKXX/study/issues"
   },
   "homepage": "https://github.com/wangKXX/study#readme",
-  "dependencies": {
-    "assert": "^2.1.0",
-    "mocha": "^10.7.3"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "assert": "^2.1.0",
+    "mocha": "^10.7.3",
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.9.1",
