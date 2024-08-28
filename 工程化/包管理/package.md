@@ -30,3 +30,8 @@
 
 当前项目才有何种模块机制，默认为commonjs，可选值为commonjs, module。不设置时表示项目中的.js默认为是以commonjs模块处理,
 设置为module表示以es6模块处理。其中.mjs总是被当做ES模块处理。.cjs 总是被当做CommonJS模块处理。
+
+## sideEffects
+
+告诉webpack打包工具，哪些文件是副作用的，webpack打包工具在打包时，会根据这个字段来决定是否将副作用文件打包。比如我们在引入antd的样式文件的时候
+import 'antd/dist/antd.css' webpack会认为这段只是引入并没有使用，那么在打包时，会忽略掉antd.css文件。所以antd在它的package.json中定义了sideEffects字段中包含了'dist'，那么webpack打包时，就会打包antd.css文件。
