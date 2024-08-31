@@ -18,22 +18,25 @@
     "url": "https://github.com/wangKXX/study/issues"
   },
   "homepage": "https://github.com/wangKXX/study#readme",
-  "dependencies": {},
+  "dependencies": {
+    "koa": "^2.15.3",
+    "lodash-es": "^4.17.21"
+  },
   "devDependencies": {
-    "assert": "^2.1.0",
-    "mocha": "^10.7.3",
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.9.1",
+    "assert": "^2.1.0",
     "eslint": "^9.9.1",
     "globals": "^15.9.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.9",
+    "mocha": "^10.7.3",
     "prettier": "3.3.3",
+    "typescript": "^5.5.4",
     "typescript-eslint": "^8.2.0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": "eslint",
     "**/*.{js,jsx,ts,tsx}": "prettier --write",
     "**/*.md": "prettier --write"
   }
