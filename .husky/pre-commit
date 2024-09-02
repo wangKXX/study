@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-
+# 检查是否使用了 --no-verify 或 -n 选项
+if [[ "$@" == *"-n"* ]] || [[ "$@" == *"--no-verify"* ]]; then
+    echo "Error: 使用 -n 或 --no-verify 选项跳过 pre-commit 检查已被禁用。"
+    exit 1
+fi
 npx lint-staged
 npm test

@@ -10,3 +10,17 @@ render的阶段，react会讲当前展示的虚拟dom树复制一份，然后那
 
 requestIdleCallback是一个相对较新的api,在一些低版本浏览器上会有兼容问题。react使用requestAnimationFrame来代替requestIdleCallback，在低版本浏览器上，requestAnimationFrame兼容性更好。还有一个就是requestIdlecallback的FPS只有20（一秒20帧）要避免用视觉上不卡顿的最低FPS需要30帧，这也是react不直接使用requestIdleCallback的原因之一，requestAnimationFrame的执行频率是和显示器的刷新帧率有关的，比如60hz的显示器，requestAnimationFrame就是16.7毫秒执行一次，而react是希望在一帧里面执行更多的任务,当然直接使用requestAnimationFrame是不能完成任务优先级调度，react还会将一些耗时超过100ms的任务放到setTimeout中执行，同时对一些高优先级的任务采用MessageChannel在其onMessage回调中尽快执行
 
+## react的生命周期
+
+1. constructor
+2. componentWillMount
+3. render
+4. componentDidMount
+5. componentWillReceiveProps
+6. shouldComponentUpdate // 判断是会否需要更新，返回false则阻止更新
+7. getSnapshotBeforeUpdate // 在state或props改变时调用，返回值会传递给componentDidUpdate的第三个参数
+8. render
+9. componentDidUpdate // 更新完成后
+10. componentWillUnmount // 写在之前
+
+
