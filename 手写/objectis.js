@@ -7,6 +7,8 @@
  *
  * Object.is 和 == 的区别
  * 1. == 隐式类型转换
+ * 基本数据类型转换
+ * 两边数据类型不一致优先转数字，但是null == undefined 除外 NAN == NaN false除外
  */
 const baseNumberValueOf = Number.prototype.valueOf;
 const baseNumberToString = Number.prototype.toString;

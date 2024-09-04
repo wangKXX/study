@@ -36,7 +36,7 @@ class MyPromise {
     this.status = FULFUILLED;
     const currentCb = this.resolveCbs.shift();
     if (currentCb) currentCb(this.value)
-    
+
   }
 
   reject(reason) {
@@ -74,3 +74,18 @@ class MyPromise {
 MyPromise.resolve(555).then(v => {
   console.log(v, 456);
 })
+
+Promise.prototype.all = function (promises) {
+  return new Promise((resolve, reject) => {
+    let count = 0;
+    let result = [];
+    for (let i = 0; i < promises.length; i++) {
+      const item = promises[i];
+      Promise.resolve(item).then(value => {
+        count++;
+        result[i] = value;
+        if (count === promises.length) resolve(result)
+      })
+    }
+  })
+}
