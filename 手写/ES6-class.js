@@ -1,7 +1,13 @@
 class A {
   instance = null
-  constructor() {
-    
+
+  #name = 'A'
+  constructor(name) {
+    this.#name = name
+  }
+
+  getName() {
+    return this.#name
   }
 
   go() {
@@ -9,6 +15,14 @@ class A {
   }
 }
 
+const instanceA = new A('a')
+
+console.log(instanceA)
+
+
+
+
+// 单例
 const singleInstance = (function getInstance() {
   let instance = null;
   return function() {
