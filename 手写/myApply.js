@@ -1,6 +1,4 @@
-Function.prototype.myApply = function() {
-  const context = [].shift.call(arguments);
-  const args = arguments[0] || [];
+Function.prototype.myApply = function(context, args) {
   context.fn = this;
   return context.fn(...args);
 }

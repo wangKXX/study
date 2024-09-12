@@ -1,7 +1,7 @@
 Array.prototype.myForEach = function(fn) {
   const length = this.length;
   for (let i = 0; i < length; i++) {
-    fn(this[i], i)
+    fn(this[i], i, this)
   }
 }
 

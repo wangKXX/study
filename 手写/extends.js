@@ -1,22 +1,22 @@
-function Person() {
-  this.name = ["人"];
-}
+// function Person() {
+//   this.name = ["人"];
+// }
 
-Person.prototype.getName = function () {
-  return this.name;
-};
+// Person.prototype.getName = function () {
+//   return this.name;
+// };
 
 /**
  * @description 构造器继承，无法继承原型上的属性方法
  */
-function Child() {
-  Person.call(this);
-}
+// function Child() {
+//   Person.call(this);
+// }
 
-const childInstance = new Child();
-const childInstance1 = new Child();
-childInstance1.name.zh_cn = "孩子";
-console.log(childInstance.name, childInstance1.name);
+// const childInstance = new Child();
+// const childInstance1 = new Child();
+// childInstance1.name.zh_cn = "孩子";
+// console.log(childInstance.name, childInstance1.name);
 
 function Person() {
   this.name = { zh_cn: "人" };

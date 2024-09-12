@@ -5,3 +5,23 @@ function myReduce(arr, callback, initialValue) {
   }
   return res
 }
+
+const arr = [1, 2, 3];
+
+const res = myReduce(arr, (pre, cur) => {
+  if(cur >= 2) {
+    pre.push(cur)
+  }
+  return pre
+}, []);
+
+console.log(res);
+
+const a = arr.reduce((pre, cur) => {
+  if(cur >= 2) {
+    pre.push(cur)
+  }
+  return pre
+}, [])
+
+console.log(a);

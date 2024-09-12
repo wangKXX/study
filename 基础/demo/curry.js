@@ -25,9 +25,39 @@ function mycurry(fn) {
   }
 }
 
-function add(a, b, c) {
-  return a + b + c
+// mybindCurry
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn(...args);
+    } else {
+      return function(...moreArgs) {
+        return curried(...args, ...moreArgs);
+      };
+    }
+  };
 }
 
-console.log(mycurry(add)(1)(2)(3))
-console.log(mycurry(add)(1, 2)(3))
+function multiply(x, y) {
+  return x * y;
+}
+
+function add(x, y) {
+  return x + y;
+}
+
+// 使用柯里化
+const curriedMultiply = curry(multiply);
+const curriedAdd = curry(add);
+
+// 组合函数
+const multiplyBy2AndAdd5 = curriedMultiply(2)(curriedAdd(5));
+
+console.log(multiplyBy2AndAdd5(3)); // 输出 11
+
+// function add(a, b, c) {
+//   return a + b + c
+// }
+
+// console.log(mycurry(add)(1)(2)(3))
+// console.log(mycurry(add)(1, 2)(3))
