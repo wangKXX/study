@@ -9,4 +9,8 @@ function sum(arr) {
   return next(0)
 }
 
+function sum2(arr) {
+  return arr.reduce((a, b) => a + b)
+}
+
 console.log(sum(arr))

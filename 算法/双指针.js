@@ -14,25 +14,25 @@ function sortedSquares(nums) {
   return temp;
 }
 
-// console.log(sortedSquares([4, 5, 6, 3, 2,1]))
+console.log(sortedSquares([4, 5, 6, 3, 2,1]))
 
 
 
 
-var rotate = function(nums, k) {
-  let res = [];
-  for(let i = 0, j = nums.length - 1; i <= j;) {
-      if (k > 0) {
-          res.unshift(nums[j]);
-          j--;
-          k--;
-      } else {
-          res.push(nums[i]);
-          i++;
-      }
+// var rotate = function(nums, k) {
+//   let res = [];
+//   for(let i = 0, j = nums.length - 1; i <= j;) {
+//       if (k > 0) {
+//           res.unshift(nums[j]);
+//           j--;
+//           k--;
+//       } else {
+//           res.push(nums[i]);
+//           i++;
+//       }
       
-  }
-  return res;
-};
+//   }
+//   return res;
+// };
 
-console.log(rotate([1,2,3,4,5,6,7], 3))
+// console.log(rotate([1,2,3,4,5,6,7], 3))
