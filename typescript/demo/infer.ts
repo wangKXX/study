@@ -23,3 +23,21 @@ type MyPartial<T> = {
 
 type T5 = Partial<T1>;
 type T6 = MyPartial<T1>;
+
+type T7 = Pick<T1, 'name'>;
+
+type MyPcik<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+
+type T8 = MyPcik<T1, 'name'>;
+
+type T9 = Omit<T1, 'name'>;
+
+type MyOmit<T, K extends keyof T> = {
+  [P in Exclude<keyof T, K>]: T[P];
+}
+
+type T10 = MyOmit<T1, 'name'>;
+
+type T11 = Exclude<T1, 'name'>;
