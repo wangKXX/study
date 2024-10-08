@@ -65,7 +65,7 @@ v-memo可以有条件的跳过组件或者元素的渲染，传入组件或元�
 
 对于静态数据不要使用ref或者reactive，因为ref和reactive都是响应式的，在初始化的时候会进行响应式转换，而静态数据不需要进行响应式转换，因此使用ref或者reactive会增加不必要的性能消耗。
 
-## 对于一些引入数据类型使用shallowRef或者shhallowReactive浅层响应式api
+## 对于一些引用数据类型使用shallowRef或者shhallowReactive浅层响应式api
 
 shallowRef和shallowReactive都是浅层响应式，对于一些引用数据类型，比如数组或者对象，使用shallowRef或者shallowReactive可以减少不必要的性能消耗。
 我们知道对于使用ref创建的数据是深层次响应的，但是对于大多数引用数据来说，我们并不需要对其子属性的变更进行监听。通过直接更改这个应用对象的引用来触发引用数据类型的响应时间能覆盖大多数场景。
